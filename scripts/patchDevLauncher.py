@@ -101,63 +101,77 @@ filew = open(args.out, "wb")
 
 filesize=getSize(files)
 
-# 1st patch
+# 1st patch : ARM9 SCFG unlock
+srlsizeoffset=0x07368
+skipUntilAddress(files,filew,0,srlsizeoffset)
+files.read(4)
+filew.write("\xB8\x60\xC7\x01")
+current=srlsizeoffset+4
+
+# 2nd patch : ARM7 SCFG unlock
+srlsizeoffset=0xA5888
+skipUntilAddress(files,filew,current,srlsizeoffset)
+files.read(8)
+filew.write("\x08\x62\x86\xE3\x08\x60\x87\xE5")
+current=srlsizeoffset+8
+
+# 3rd patch
 srlsizeoffset=0xAC535
 skipUntilAddress(files,filew,0,srlsizeoffset)
 files.read(1)
 filew.write("\x00")
 current=srlsizeoffset+1
 
-# 2nd patch
+# 4th patch
 srlsizeoffset=0xAC589
 skipUntilAddress(files,filew,current,srlsizeoffset)
 files.read(1)
 filew.write("\x00")
 current=srlsizeoffset+1
 
-# 3rd patch
+# 5th patch
 srlsizeoffset=0xAC58C
 skipUntilAddress(files,filew,current,srlsizeoffset)
 files.read(5)
 filew.write("\x73\x64\x6D\x63\x00")
 current=srlsizeoffset+5
 
-# 4th patch
+# 6th patch
 srlsizeoffset=0xAC5DD
 skipUntilAddress(files,filew,current,srlsizeoffset)
 files.read(1)
 filew.write("\x10")
 current=srlsizeoffset+1
 
-# 5th patch
+# 7th patch
 srlsizeoffset=0xAC631
 skipUntilAddress(files,filew,current,srlsizeoffset)
 files.read(1)
 filew.write("\x10")
 current=srlsizeoffset+1
 
-# 6th patch
+# 8th patch
 srlsizeoffset=0xAC685
 skipUntilAddress(files,filew,current,srlsizeoffset)
 files.read(1)
 filew.write("\x10")
 current=srlsizeoffset+1
 
-# 7th patch
+# 9th patch
 srlsizeoffset=0xAC6D9
 skipUntilAddress(files,filew,current,srlsizeoffset)
 files.read(1)
 filew.write("\x10")
 current=srlsizeoffset+1
 
-# 8th patch
+# 10th patch
 srlsizeoffset=0xAC6EC
 skipUntilAddress(files,filew,current,srlsizeoffset)
 files.read(12)
 filew.write("\x73\x64\x6D\x63\x3A\x2F\x70\x68\x6F\x74\x6F\x00")
 current=srlsizeoffset+12
 
-# 9th patch
+# 11th patch
 srlsizeoffset=0xAC72D
 skipUntilAddress(files,filew,current,srlsizeoffset)
 files.read(1)
