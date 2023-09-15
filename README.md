@@ -71,4 +71,6 @@ Thanks again to Normatt for the ARM7 patch.
 Thanks as well to Apache Thunder and Shutterbug2000 for the testing and hacking support.
 
 Thanks to Nocash and Steveice10 for their reverse engineering work and the documentation produced.
+
+Thanks to RocketRobz and ahezard
  
